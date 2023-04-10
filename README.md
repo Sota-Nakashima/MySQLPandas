@@ -1,7 +1,7 @@
-AESPA
+MySQLPandas
 ============
-[![Version](https://img.shields.io/badge/stable-main-gree)](https://github.com/Sota-Nakashima/AESPA)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Sota-Nakashima/AESPA/blob/main/LICENCE)
+[![Version](https://img.shields.io/badge/stable-main-gree)](https://github.com/Sota-Nakashima/MySQLPandas)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Sota-Nakashima/MySQLPandas/blob/main/LICENCE)
 #  Overview
 Simple connector between MySQL(MariaDB) and Pandas
 
