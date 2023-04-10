@@ -1,0 +1,29 @@
+MySQLPandas.lib package
+=======================
+
+Submodules
+----------
+
+MySQLPandas.lib.DataFrameClass module
+-------------------------------------
+
+.. automodule:: MySQLPandas.lib.DataFrameClass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+MySQLPandas.lib.ErrorClass module
+---------------------------------
+
+.. automodule:: MySQLPandas.lib.ErrorClass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: MySQLPandas.lib
+   :members:
+   :undoc-members:
+   :show-inheritance:
