@@ -2,7 +2,7 @@ MySQLPandas
 ============
 [![pages-build-deployment](https://github.com/Sota-Nakashima/MySQLPandas/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Sota-Nakashima/MySQLPandas/actions/workflows/pages/pages-build-deployment)
 [![Version](https://img.shields.io/badge/stable-main-gree)](https://github.com/Sota-Nakashima/MySQLPandas)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Sota-Nakashima/MySQLPandas/blob/main/LICENCE)
+[![GNU GPLv2](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Sota-Nakashima/MySQLPandas/blob/main/LICENCE)
 #  Overview
 Simple connector between MySQL(MariaDB) and Pandas
 
