@@ -1,7 +1,7 @@
 from .core import *
 
 __copyright__    = '(c) 2023 Sota Nakashima'
-__version__      = '0.0.11'
+__version__      = '0.0.15'
 __license__      = 'GPLv2'
 __author__       = 'Sota-Nakashima'
 __author_email__ = 'souta.nakashima2001@gmail.com'
