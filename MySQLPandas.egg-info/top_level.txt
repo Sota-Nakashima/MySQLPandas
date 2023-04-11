@@ -1,2 +1,0 @@
-MySQLPandas
-MySQLPandas/lib
