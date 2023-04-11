@@ -2,5 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 mysql-connector-python<=8.0.29
-pandas
-python
+pandas<=1.5.3

@@ -52,6 +52,7 @@ setup(
 
     description='MySQLPandas: simple connector between MySQL(MariaDB) and Pandas',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     keywords='Python, Pandas, Database',
 
     classifiers=[
