@@ -3,6 +3,7 @@ import getpass
 import os
 import sys
 import time
+from tqdm import tqdm
 from configparser import ConfigParser
 from mysql.connector import MySQLConnection
 from typing import Optional
@@ -453,9 +454,13 @@ def _insertRecordBuffer(
     cursor = con.cursor()
     
     rep = 0
+    #make progress bar object
+    pbar = tqdm(total=((len(record_list.list_for_command)//1000)+1)*1000)
+
     while not rep >= len(record_list.list_for_command):   
         split_list_for_command = record_list.list_for_command[rep:rep+1000]
         rep += 1000
+        pbar.update(1000)
         try:
             cursor.executemany(record_list.sql_command,split_list_for_command)
             con.commit()
@@ -470,8 +475,4 @@ def _insertRecordBuffer(
         except Exception as e:
             con.rollback()
             raise PandasMySQLError(e)
-        percentile = round((rep * 100)/len(record_list.list_for_command))
-        if percentile < 100:
-            print(f"{percentile}% complete.")
-        else:
-            print("100% complete")
+    pbar.close()

@@ -3,3 +3,4 @@
 # platform: linux-64
 mysql-connector-python<=8.0.29
 pandas<=1.5.3
+tqdm<=4.65.0
