@@ -103,6 +103,7 @@ class MySQLPandas(MySQLConnection):
             print("Connected to the database")
         else:
             raise PandasMySQLError("something went wrong.")
+        self.__catchwaringshow()
 
     def showTableList(self) -> None:
         """
@@ -119,6 +120,8 @@ class MySQLPandas(MySQLConnection):
         self.__catchTableList()
         for DBname in self.DBList:
             print(DBname)
+        self.__catchwaringshow()
+        
     
     def showTableinfo(self,table_name:str) -> None:
         """
@@ -139,6 +142,7 @@ class MySQLPandas(MySQLConnection):
         """
         self.__catchTableInfo(table_name=table_name)
         print(self.table_info)
+        self.__catchwaringshow()
     
     def deleteTable(self,table_name:str) -> None:
         """
@@ -160,6 +164,7 @@ class MySQLPandas(MySQLConnection):
         con = self
         cursor = con.cursor()
         cursor.execute(f"drop table {table_name};")
+        self.__catchwaringshow()
 
     def makeTable(
             self,
@@ -210,6 +215,7 @@ class MySQLPandas(MySQLConnection):
         con = self
         cursor = con.cursor()
         cursor.execute(df_object.sql_command)
+        self.__catchwaringshow()
     
     def insertRecord(
             self,
@@ -278,7 +284,7 @@ class MySQLPandas(MySQLConnection):
         status_message = dfs_obj.isEqualDataFrames(Strict_Mode=Strict_Mode)
         match status_message:
             case "continue":
-                __insertRecordBuffer(
+                _insertRecordBuffer(
                     self,
                     table_name = table_name,
                     df = df,
@@ -305,7 +311,7 @@ class MySQLPandas(MySQLConnection):
                         con.rollback()
                         raise PandasMySQLError(e)
                 
-                __insertRecordBuffer(
+                _insertRecordBuffer(
                     self,
                     table_name = table_name,
                     df = df,
@@ -340,6 +346,7 @@ class MySQLPandas(MySQLConnection):
         con = self
         cursor = con.cursor()
         cursor.execute(f"alter table {table_name} add primary key ({primary_key});")
+        self.__catchwaringshow()
     
     def deletePrimaryKey(self,table_name:str) -> None:
         """
@@ -356,6 +363,7 @@ class MySQLPandas(MySQLConnection):
         con = self
         cursor = con.cursor()
         cursor.execute(f"alter table {table_name} drop primary key;")
+        self.__catchwaringshow()
 
     def __catchTableInfo(self,table_name:str) -> None:
         con = self
@@ -376,6 +384,14 @@ class MySQLPandas(MySQLConnection):
         for row in rows:
             self.DBList.append(row[0])
     
+    def __catchwaringshow(self) -> Optional[pd.DataFrame]:
+        con = self
+        cursor = con.cursor()
+        cursor.execute('show warnings;')
+        warn_state = pd.DataFrame(cursor.fetchall())
+        if not warn_state.empty:
+            print(warn_state)
+
     def executeSQLcommand(self,command:str) -> pd.DataFrame:
         """
         Execute SQL command and return DataFrame object
@@ -386,7 +402,7 @@ class MySQLPandas(MySQLConnection):
 
         Return
         ----------
-        None
+        DataFrame
         """ 
         con = self
         cursor = con.cursor()
@@ -395,6 +411,7 @@ class MySQLPandas(MySQLConnection):
         except Exception as e:
             raise PandasMySQLError(e)
         result = cursor.fetchall()
+        self.__catchwaringshow()
         return pd.DataFrame(result)
 
     #debug
@@ -413,7 +430,7 @@ class MySQLPandas(MySQLConnection):
 
 
 #tools
-def __insertRecordBuffer(
+def _insertRecordBuffer(
         self:MySQLPandas,
         table_name: str,
         df_path: Optional[str] = None,
@@ -442,6 +459,13 @@ def __insertRecordBuffer(
         try:
             cursor.executemany(record_list.sql_command,split_list_for_command)
             con.commit()
+
+            #print if MySQL output some error.
+            cursor.execute('show warnings;')
+            warn_state = pd.DataFrame(cursor.fetchall())
+            if not warn_state.empty:
+                print(warn_state)
+            
             time.sleep(1.0)
         except Exception as e:
             con.rollback()
