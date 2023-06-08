@@ -2,7 +2,7 @@ MySQLPandas
 ============
 [![pages-build-deployment](https://github.com/Sota-Nakashima/MySQLPandas/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Sota-Nakashima/MySQLPandas/actions/workflows/pages/pages-build-deployment)
 [![Version](https://img.shields.io/badge/stable-main-gree)](https://github.com/Sota-Nakashima/MySQLPandas)
-[![PyPI](https://img.shields.io/badge/PyPI-0.0.18-blue)](https://pypi.org/project/MySQLPandas/)
+[![PyPI](https://img.shields.io/badge/PyPI-0.0.19-blue)](https://pypi.org/project/MySQLPandas/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://github.com/Sota-Nakashima/MySQLPandas/blob/main/LICENCE)
 #  Overview
 Simple connector between MySQL(MariaDB) and Pandas
@@ -35,6 +35,8 @@ If you want to change table definition, please see below.
 * Change int or float type column  
   Sorry, you can't change it in MySQLPandas. Please rewrite it by using "executeSQLcommand" method. 
 
+0.0.19 ~
+* Columns are no longer automatically assigned an underscore instead of a space when the database is created. However, it is recommended to replace them with underbars as much as possible, since spaces may cause unintended behavior.
 ## Setup password.ini
 In default, you need to input DB password in your console every time.  
 If you felt bothered, you avoid this by creating "password.ini" file.  

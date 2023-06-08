@@ -7,3 +7,4 @@ pytest.ini
 sample
 tests
 MySQLPandas.egg-info
+how2update.txt

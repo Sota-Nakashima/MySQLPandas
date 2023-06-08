@@ -28,7 +28,7 @@ class DataframeProcessing():
     
     def makeDBFrame(self) -> None:
         #create sql command
-        column_name = list(map(lambda x:x.replace(" ","_"),list(self.df.columns))) #column name list
+        column_name = list(map(lambda x:x.replace(" "," "),list(self.df.columns))) #column name list
 
         column_type = list(map(str,list(self.df.dtypes))) #column dtype list
         column_type = list(map(lambda x:x.replace("64",""),column_type)) #remove "64"

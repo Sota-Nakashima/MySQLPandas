@@ -14,3 +14,7 @@ History
 * Add password_sample.ini file.
 * Rewrite MANIFEST.in.
 * Update requirements.
+
+0.0.18 (06-08-2023)
+------------------
+* Change algorizim about creating DB Frame.
